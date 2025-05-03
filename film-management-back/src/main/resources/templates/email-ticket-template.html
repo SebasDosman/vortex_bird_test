@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Cinema Ticket</title>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                font-family: 'Courier New', monospace;
+            }
+
+            body {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                min-height: 100vh;
+                padding: 20px;
+            }
+
+            .ticket-container {
+                width: 350px;
+                background-color: white;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+                border-radius: 8px;
+                overflow: hidden;
+            }
+
+            .ticket-header {
+                background-color: #d32f2f;
+                color: white;
+                padding: 15px;
+                text-align: center;
+                font-size: 18px;
+                font-weight: bold;
+                border-bottom: 2px dashed #aaa;
+            }
+
+            .cinema-logo {
+                text-align: center;
+                padding: 15px 0;
+                font-size: 24px;
+                font-weight: bold;
+            }
+
+            .ticket-content {
+                padding: 15px;
+            }
+
+            .movie-info {
+                margin-bottom: 15px;
+                border-bottom: 1px solid #eee;
+                padding-bottom: 15px;
+            }
+
+            .movie-info p {
+                margin: 5px 0;
+                display: flex;
+                justify-content: space-between;
+            }
+
+            .movie-info span:first-child {
+                font-weight: bold;
+                color: #555;
+            }
+
+            .purchase-items {
+                margin-bottom: 15px;
+                border-bottom: 1px solid #eee;
+                padding-bottom: 15px;
+            }
+
+            .purchase-item {
+                padding: 8px 0;
+                border-bottom: 1px dashed #eee;
+            }
+
+            .purchase-item:last-child {
+                border-bottom: none;
+            }
+
+            .film-title {
+                font-weight: bold;
+                margin-bottom: 4px;
+            }
+
+            .film-details {
+                display: flex;
+                justify-content: space-between;
+                font-size: 14px;
+                color: #555;
+            }
+
+            .user-info {
+                border-bottom: 1px solid #eee;
+                padding-bottom: 15px;
+                margin-bottom: 15px;
+            }
+
+            .user-info p {
+                margin: 5px 0;
+                display: flex;
+                justify-content: space-between;
+            }
+
+            .user-info span:first-child {
+                font-weight: bold;
+                color: #555;
+            }
+
+            .purchase-info {
+                margin-bottom: 15px;
+            }
+
+            .purchase-info p {
+                margin: 5px 0;
+                display: flex;
+                justify-content: space-between;
+            }
+
+            .purchase-info span:first-child {
+                font-weight: bold;
+                color: #555;
+            }
+
+            .barcode {
+                text-align: center;
+                padding: 15px 0;
+                border-top: 2px dashed #aaa;
+                font-size: 14px;
+            }
+
+            .barcode-img {
+                height: 60px;
+                margin: 10px 0;
+                background: repeating-linear-gradient(90deg, #000, #000 2px, #fff 3px, #fff 6px);
+                max-width: 80%;
+            }
+
+            .footer {
+                text-align: center;
+                padding: 10px;
+                font-size: 12px;
+                color: #777;
+                background-color: #f8f8f8;
+            }
+
+            @media print {
+                body {
+                    background-color: white;
+                }
+
+                .ticket-container {
+                    box-shadow: none;
+                    width: 100%;
+                    max-width: 330px;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="ticket-container">
+            <div class="ticket-header">
+                MOVIE TICKET
+            </div>
+
+            <div class="cinema-logo">
+                FILMS MANAGEMENT
+            </div>
+
+            <div class="ticket-content">
+                <div class="purchase-items">
+                    <h3 style="margin-bottom: 10px; text-align: center;">PURCHASED FILMS</h3>
+
+                    <div class="purchase-item" th:each="detail : ${details}">
+                        <div class="film-title" th:text="${detail.getFilm().getTitle()}"></div>
+                        <div class="film-details">
+                            <p><span th:text="${'Quantity: ' + detail.getQuantity()}"></span></p>
+                            <p><span th:text="${'$' + detail.getUnitPrice()}"></span></p>
+                        </div>
+                        <div class="movie-info">
+                            <p><span>Description:</span> <span th:text="${detail.getFilm().getDescription()}"></span></p>
+                            <p><span>Genre:</span> <span th:text="${detail.getFilm().getGenre()}"></span></p>
+                            <p><span>Classification:</span> <span th:text="${detail.getFilm().getClassification()}"></span></p>
+                            <p><span>Duration:</span> <span th:text="${detail.getFilm().getDuration()}"></span></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="user-info">
+                    <p><span>Name:</span> <span th:text="${user.getName()}"></span></p>
+                    <p><span>Last name:</span> <span th:text="${user.getLastName()}"></span></p>
+                    <p><span>Phone:</span> <span th:text="${user.getPhone()}"></span></p>
+                    <p><span>Email:</span> <span th:text="${user.getEmail()}"></span></p>
+                </div>
+
+                <div class="purchase-info">
+                    <p><span>Purchase date:</span> <span th:text="${purchase.getPurchaseDate()}"></span></p>
+                    <p><span>Total amount:</span> <span th:text="${'$' + purchase.getTotalAmount()}"></span></p>
+                    <p><span>IVA (21%):</span> <span th:text="${'$' + (purchase.getTotalAmount() * 0.21)}"></span></p>
+                    <p><span>Total:</span> <span th:text="${'$' + (purchase.getTotalAmount + (purchase.getTotalAmount() * 0.21))}"></span></p>
+                    <p><span>Ref.:</span> <span th:text="${referenceCode}"></span></p>
+                    <p><span>Payment method:</span> <span th:text="${purchase.getPaymentMethod()}"></span></p>
+                    <p><span>Payment status:</span> <span th:text="${purchase.getPaymentStatus()}"></span></p>
+                </div>
+            </div>
+
+            <div class="barcode">
+                <div class="barcode-img"></div>
+                <p th:text="${referenceCode}"></p>
+            </div>
+
+            <div class="footer">
+                Keep this ticket until the end of the show.
+                No refunds are allowed.
+            </div>
+        </div>
+    </body>
+</html>

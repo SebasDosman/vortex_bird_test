@@ -1,0 +1,10 @@
+-- INSERT INTO users (name, last_name, phone, email, password, role, enabled)
+-- VALUES (
+--    'Admin',
+--    'Prueba',
+--    '1234567890',
+--    'admin@example.com',
+--    '$2a$10$7Fh8JhYwlxYxsmQyV7wPxeIfZ9gZyD63E1IXWbTllQ9B6pE7LRoB2',
+--    1,
+--    TRUE
+-- );

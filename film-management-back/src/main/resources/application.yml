@@ -1,0 +1,40 @@
+server:
+  port: 8080
+
+spring:
+    application:
+      name: film-management-back
+    datasource:
+      url: jdbc:postgresql://${DB_HOST}/films_db
+      username: ${DB_USER}
+      password: ${DB_PASSWORD}
+      driver-class-name: org.postgresql.Driver
+    jpa:
+      open-in-view: true
+    mail:
+      protocol: smtp
+      host: ${MAIL_HOST}
+      port: ${MAIL_PORT}
+      username: ${MAIL_USERNAME}
+      password: ${MAIL_PASSWORD}
+      from-address: ${MAIL_USERNAME}
+      properties:
+          mail.smtp.auth: true
+          mail.smtp.starttls.enable: true
+    thymeleaf:
+      prefix: classpath:/templates/
+      suffix: .html
+      mode: HTML
+      encoding: UTF-8
+      cache: false
+    servlet:
+      multipart:
+        enabled: true
+        max-file-size: 10MB
+        max-request-size: 10MB
+
+firebase:
+  service-account:
+    path: ${FIREBASE_CREDENTIALS_PATH}
+  storage:
+    bucket-name: ${FIREBASE_BUCKET_NAME}
