@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
-import { Button } from "../components";
+import { Button, Navbar } from "../components";
 
 
 export const Dashboard: React.FC = () => {
-    const { currentUser, userRole, logout } = useAuth();
+    const { currentUser, userRole } = useAuth();
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -14,28 +14,11 @@ export const Dashboard: React.FC = () => {
         }
     }, [currentUser, navigate]);
 
-    const handleLogout = () => {
-        logout();
-        navigate("/login");
-    };
-
     if (!currentUser) return null;
 
     return (
         <div className="min-h-screen bg-gray-50">
-            <header className="bg-red-600 text-white shadow-md">
-                <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-                    <h1 className="text-2xl font-bold">Films Management</h1>
-                    <div className="flex items-center gap-4">
-                        <span className="hidden md:inline-block">
-                            Hi, { currentUser.name }!
-                        </span>
-                        <Button variant="secondary" onClick={ handleLogout }>
-                            Log Out
-                        </Button>
-                    </div>
-                </div>
-            </header>
+            <Navbar />
 
             <main className="container mx-auto px-4 py-8">
                 <div className="bg-white rounded-lg shadow-md p-6">
@@ -48,7 +31,7 @@ export const Dashboard: React.FC = () => {
                     {
                         userRole === "ADMIN" ? (
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                <DashboardCard title="Films Management" description="Create, update or delete movies." action={() => navigate("/admin/movies")}/>
+                                <DashboardCard title="Films Management" description="Create, update or delete films." action={() => navigate("/admin/films")}/>
                                 <DashboardCard title="Users Management" description="Create, update or delete users." action={() => navigate("/admin/users")}/>
                             </div>
                         ) : (
