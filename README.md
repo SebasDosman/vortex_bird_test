@@ -57,7 +57,7 @@ All administrative and purchase-related operations are protected using **RBAC (R
 - Node.js and npm
 - Java 17+
 - Maven
-- PostgreSQL or your preferred RDBMS
+- PostgreSQL
 
 ### Run Front-End
 ```bash
