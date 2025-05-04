@@ -61,13 +61,13 @@ public class UserController {
     }
 
     @Operation(summary = "Update user status", description = "Updates the status of a user.")
-    @PutMapping("/{id}")
+    @PutMapping("/admin/{id}")
     public ResponseEntity<UserResponse> updateStatus(@PathVariable Long id) {
         return new ResponseEntity<>(userService.updateStatus(id), HttpStatus.OK);
     }
 
     @Operation(summary = "Delete user", description = "Deletes a user by their unique ID.")
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/admin/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id) {
         userService.delete(id);
 

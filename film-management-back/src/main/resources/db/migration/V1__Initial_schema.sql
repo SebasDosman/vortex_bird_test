@@ -19,6 +19,7 @@ CREATE TABLE IF NOT EXISTS films (
     genre SMALLINT NOT NULL,
     classification SMALLINT NOT NULL,
     duration INT NOT NULL CHECK (duration > 0),
+    ticket_price DECIMAL(10, 2) NOT NULL CHECK (ticket_price >= 0),
     enabled BOOLEAN NOT NULL DEFAULT TRUE
 );
 
@@ -37,8 +38,7 @@ CREATE TABLE IF NOT EXISTS purchase_details (
     id SERIAL PRIMARY KEY,
     purchase_id BIGINT NOT NULL,
     film_id BIGINT NOT NULL,
-    quantity INT NOT NULL CHECK (quantity > 0),
-    unit_price DECIMAL(10, 2) NOT NULL CHECK (unit_price >= 0)
+    quantity INT NOT NULL CHECK (quantity > 0)
 );
 
 

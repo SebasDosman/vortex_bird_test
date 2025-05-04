@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { Button, Navbar } from "../components";
+import { UserDashboard } from "./user/UserDashboard";
 
 
 export const Dashboard: React.FC = () => {
@@ -20,30 +21,27 @@ export const Dashboard: React.FC = () => {
         <div className="min-h-screen bg-gray-50">
             <Navbar />
 
-            <main className="container mx-auto px-4 py-8">
-                <div className="bg-white rounded-lg shadow-md p-6">
-                    <h2 className="text-2xl font-semibold text-gray-800 mb-6">
-                        {
-                            userRole === "ADMIN" ? "Admin" : "User"
-                        } Dashboard
-                    </h2>
-
-                    {
-                        userRole === "ADMIN" ? (
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                <DashboardCard title="Films Management" description="Create, update or delete films." action={() => navigate("/admin/films")}/>
-                                <DashboardCard title="Users Management" description="Create, update or delete users." action={() => navigate("/admin/users")}/>
-                            </div>
-                        ) : (
+            {
+                userRole === "ADMIN" ? (
+                    <main className="container mx-auto px-4 py-8">
+                        <div className="bg-white rounded-lg shadow-md p-6">
+                            <h2 className="text-2xl font-semibold text-gray-800 mb-6">
+                                {
+                                    userRole === "ADMIN" ? "Admin" : "User"
+                                } Dashboard
+                            </h2>
+                                
                             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                                <DashboardCard title="Movies" description="View the current movies." action={() => navigate("/movies")}/>
-                                <DashboardCard title="My Tickets" description="View your purchased tickets." action={() => navigate("/tickets")}/>
-                                <DashboardCard title="My Profile" description="Update your profile information." action={() => navigate("/profile")}/>
+                                <DashboardCard title="Films Management" description="Create, update or delete films." action={ () => navigate("/admin/films") }/>
+                                <DashboardCard title="Users Management" description="Create, update or delete users." action={ () => navigate("/admin/users") }/>
+                                <DashboardCard title="Purchases Management" description="Read or delete purchases." action={ () => navigate("/admin/purchases") }/>
                             </div>
-                        )
-                    }
-                </div>
-            </main>
+                        </div>
+                    </main>
+                ) : (
+                    <UserDashboard />
+                )
+            }
         </div>
     );
 };

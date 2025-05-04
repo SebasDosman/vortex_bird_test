@@ -29,7 +29,7 @@
             }
 
             .ticket-header {
-                background-color: #d32f2f;
+                background-color: #E7000B;
                 color: white;
                 padding: 15px;
                 text-align: center;
@@ -177,8 +177,8 @@
                     <div class="purchase-item" th:each="detail : ${details}">
                         <div class="film-title" th:text="${detail.getFilm().getTitle()}"></div>
                         <div class="film-details">
-                            <p><span th:text="${'Quantity: ' + detail.getQuantity()}"></span></p>
-                            <p><span th:text="${'$' + detail.getUnitPrice()}"></span></p>
+                            <p><span>Quantity:</span> <span th:text="${detail.getQuantity()}"></span></p><br>
+                            <p><span>Unit price:</span> <span th:text="${'$' + detail.getFilm().getTicketPrice()}"></span></p>
                         </div>
                         <div class="movie-info">
                             <p><span>Description:</span> <span th:text="${detail.getFilm().getDescription()}"></span></p>

@@ -34,7 +34,7 @@ public class PurchaseDetailController {
     }
 
     @Operation(summary = "Delete purchase detail", description = "Deletes a purchase detail by their unique ID.")
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/admin/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id) {
         purchaseDetailService.delete(id);
 

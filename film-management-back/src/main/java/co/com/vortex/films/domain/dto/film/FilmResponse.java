@@ -15,5 +15,6 @@ public class FilmResponse {
     private String genre;
     private String classification;
     private Integer duration;
+    private Integer ticketPrice;
     private boolean enabled;
 }

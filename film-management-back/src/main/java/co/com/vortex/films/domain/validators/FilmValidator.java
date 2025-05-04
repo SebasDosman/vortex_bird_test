@@ -19,6 +19,9 @@ public class FilmValidator {
     public static final String DURATION_NOT_NULL = "The film duration cannot be null";
     public static final String DURATION_POSITIVE = "The film duration must be a positive number";
 
+    public static final String TICKET_PRICE_NOT_NULL = "The ticket price cannot be null";
+    public static final String TICKET_PRICE_MIN = "The ticket price must be at least 1";
+
     public static final String FILM_NOT_FOUND = "The film with ID: %d was not found";
     public static final String FILM_NOT_FOUND_BY_TITLE = "The film with title: %s was not found";
 }

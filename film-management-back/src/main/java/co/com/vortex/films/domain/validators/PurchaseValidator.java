@@ -14,4 +14,5 @@ public class PurchaseValidator {
     public static final String DETAILS_NOT_EMPTY = "The purchase must have at least one detail";
 
     public static final String PURCHASE_NOT_FOUND = "The purchase with ID: %s was not found";
+    public static final String PURCHASE_NOT_FOUND_BY_USER = "The purchase with user ID: %s was not found";
 }

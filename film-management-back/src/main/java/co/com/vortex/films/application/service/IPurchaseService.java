@@ -7,6 +7,7 @@ import org.springframework.data.domain.Slice;
 
 public interface IPurchaseService {
     Slice<PurchaseResponse> findAll(Pageable pageable);
+    Slice<PurchaseResponse> findByUserId(Long userId, Pageable pageable);
     PurchaseResponse findById(Long id);
     PurchaseResponse save(CreatePurchaseRequest createPurchaseRequest);
     void delete(Long id);

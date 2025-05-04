@@ -6,5 +6,6 @@ export interface FilmResponse {
     genre: string;
     classification: string;
     duration: number;
+    ticketPrice: number;
     enabled: boolean;
 }

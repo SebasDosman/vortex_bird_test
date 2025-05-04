@@ -15,7 +15,6 @@ public class PurchaseDetailMapper {
                 .id(purchaseDetail.getId())
                 .film(FilmMapper.toFilmResponse(purchaseDetail.getFilm()))
                 .quantity(purchaseDetail.getQuantity())
-                .unitPrice(purchaseDetail.getUnitPrice())
                 .build();
     }
 
@@ -23,7 +22,6 @@ public class PurchaseDetailMapper {
         return PurchaseDetail.builder()
                 .film(film)
                 .quantity(createPurchaseDetailRequest.getQuantity())
-                .unitPrice(createPurchaseDetailRequest.getUnitPrice())
                 .build();
     }
 
@@ -32,7 +30,6 @@ public class PurchaseDetailMapper {
                 .id(updatePurchaseDetailRequest.getId())
                 .film(film)
                 .quantity(updatePurchaseDetailRequest.getQuantity())
-                .unitPrice(updatePurchaseDetailRequest.getUnitPrice())
                 .build();
     }
 

@@ -41,8 +41,8 @@ public class SecurityConfig {
                                 "/auth/**"
                         ).permitAll()
                         .requestMatchers(
-                                "/film/**",
-                                "/user/**"
+                                "/film/admin/**",
+                                "/user/admin/**"
                         )
                         .hasAnyAuthority(UserRole.ADMIN.name())
                         .anyRequest()

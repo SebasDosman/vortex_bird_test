@@ -19,7 +19,7 @@ export class FilmService {
 
         if (!response.ok) {
             const errorData = await response.json();
-            throw new Error(errorData.message);
+            throw new Error(errorData.details ? errorData.details : errorData.message);
         }
 
         return await response.json();
@@ -37,7 +37,7 @@ export class FilmService {
 
         if (!response.ok) {
             const errorData = await response.json();
-            throw new Error(errorData.message);
+            throw new Error(errorData.details ? errorData.details : errorData.message);
         }
 
         return await response.json();
@@ -55,7 +55,7 @@ export class FilmService {
 
         if (!response.ok) {
             const errorData = await response.json();
-            throw new Error(errorData.message);
+            throw new Error(errorData.details ? errorData.details : errorData.message);
         }
 
         return await response.json();
@@ -73,7 +73,7 @@ export class FilmService {
 
         if (!response.ok) {
             const errorData = await response.json();
-            throw new Error(errorData.message);
+            throw new Error(errorData.details ? errorData.details : errorData.message);
         }
 
         return await response.json();
@@ -89,7 +89,7 @@ export class FilmService {
         
         if (folder) formData.append("folder", folder);
 
-        const response = await fetch(`${ this.API_URL }/film`, {
+        const response = await fetch(`${ this.API_URL }/film/admin`, {
             method: "POST",
             headers: {
                 "Authorization": `Bearer ${ token }`
@@ -99,7 +99,7 @@ export class FilmService {
 
         if (!response.ok) {
             const errorData = await response.json();
-            throw new Error(errorData.message);
+            throw new Error(errorData.details ? errorData.details : errorData.message);
         }
 
         return await response.json();
@@ -107,7 +107,7 @@ export class FilmService {
 
     public updateFilm = async (filmData: UpdateFilmRequest): Promise<FilmResponse> => {
         const token = authService.getToken();
-        const response = await fetch(`${ this.API_URL }/film`, {
+        const response = await fetch(`${ this.API_URL }/film/admin`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
@@ -118,7 +118,7 @@ export class FilmService {
 
         if (!response.ok) {
             const errorData = await response.json();
-            throw new Error(errorData.message);
+            throw new Error(errorData.details ? errorData.details : errorData.message);
         }
 
         return await response.json();
@@ -126,7 +126,7 @@ export class FilmService {
 
     public updateFilmStatus = async (id: number): Promise<FilmResponse> => {
         const token = authService.getToken();
-        const response = await fetch(`${ this.API_URL }/film/${ id }`, {
+        const response = await fetch(`${ this.API_URL }/film/admin/${ id }`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
@@ -136,7 +136,7 @@ export class FilmService {
 
         if (!response.ok) {
             const errorData = await response.json();
-            throw new Error(errorData.message);
+            throw new Error(errorData.details ? errorData.details : errorData.message);
         }
 
         return await response.json();
@@ -144,7 +144,7 @@ export class FilmService {
 
     public deleteFilm = async (id: number): Promise<void> => {
         const token = authService.getToken();
-        const response = await fetch(`${ this.API_URL }/film/${ id }`, {
+        const response = await fetch(`${ this.API_URL }/film/admin/${ id }`, {
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json",
@@ -154,7 +154,7 @@ export class FilmService {
 
         if (!response.ok) {
             const errorData = await response.json();
-            throw new Error(errorData.message);
+            throw new Error(errorData.details ? errorData.details : errorData.message);
         }
     }
 }

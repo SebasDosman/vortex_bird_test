@@ -16,6 +16,7 @@ public class FilmMapper {
                 .genre(film.getGenre().toString())
                 .classification(film.getClassification().toString())
                 .duration(film.getDuration())
+                .ticketPrice(film.getTicketPrice())
                 .enabled(film.isEnabled())
                 .build();
     }
@@ -28,6 +29,7 @@ public class FilmMapper {
                 .genre(createFilmRequest.getGenre())
                 .classification(createFilmRequest.getClassification())
                 .duration(createFilmRequest.getDuration())
+                .ticketPrice(createFilmRequest.getTicketPrice())
                 .build();
     }
 
@@ -40,6 +42,7 @@ public class FilmMapper {
                 .genre(updateFilmRequest.getGenre())
                 .classification(updateFilmRequest.getClassification())
                 .duration(updateFilmRequest.getDuration())
+                .ticketPrice(updateFilmRequest.getTicketPrice())
                 .enabled(enabled)
                 .build();
     }

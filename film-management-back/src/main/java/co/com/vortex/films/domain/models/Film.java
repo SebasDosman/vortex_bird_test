@@ -34,6 +34,9 @@ public class Film {
     private Integer duration;
 
     @Column(nullable = false)
+    private Integer ticketPrice;
+
+    @Column(nullable = false)
     private boolean enabled;
 
     @PrePersist

@@ -30,4 +30,8 @@ public class CreateFilmRequest {
     @NotNull(message = FilmValidator.DURATION_NOT_NULL)
     @Min(value = 1, message = FilmValidator.DURATION_POSITIVE)
     private Integer duration;
+
+    @NotNull(message = FilmValidator.TICKET_PRICE_NOT_NULL)
+    @Min(value = 1, message = FilmValidator.TICKET_PRICE_MIN)
+    private Integer ticketPrice;
 }

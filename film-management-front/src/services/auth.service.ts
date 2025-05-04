@@ -15,7 +15,7 @@ export class AuthService {
 
         if (!response.ok) {
             const errorData = await response.json();
-            throw new Error(errorData.message);
+            throw new Error(errorData.details ? errorData.details : errorData.message);
         }
 
         return await response.json();
@@ -32,7 +32,7 @@ export class AuthService {
 
         if (!response.ok) {
             const errorData = await response.json();
-            throw new Error(errorData.message);
+            throw new Error(errorData.details ? errorData.details : errorData.message);
         }
 
         return await response.json();

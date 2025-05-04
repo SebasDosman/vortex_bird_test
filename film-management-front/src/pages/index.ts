@@ -1,5 +1,7 @@
 export * from "./admin/films";
+export * from "./admin/purchases/PurchasesManagement";
 export * from "./admin/users";
+export * from "./user/UserDashboard";
 export * from "./Dashboard";
 export * from "./Login";
 export * from "./NotFound";

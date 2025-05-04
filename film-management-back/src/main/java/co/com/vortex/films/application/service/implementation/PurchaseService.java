@@ -48,6 +48,16 @@ public class PurchaseService implements IPurchaseService {
 
     @Override
     @Transactional(readOnly = true)
+    public Slice<PurchaseResponse> findByUserId(Long userId, Pageable pageable) {
+        Slice<Purchase> purchases = purchaseRepository.findByUserId(userId, pageable);
+
+        if (purchases.isEmpty()) throw new NotFoundException(String.format(PurchaseValidator.PURCHASE_NOT_FOUND_BY_USER, userId));
+
+        return PurchaseMapper.toPurchaseResponseSlice(purchases);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
     public PurchaseResponse findById(Long id) {
         if (!purchaseRepository.existsById(id)) throw new NotFoundException(String.format(PurchaseValidator.PURCHASE_NOT_FOUND, id));
 
@@ -90,7 +100,7 @@ public class PurchaseService implements IPurchaseService {
 
     private void calculateTotalAmount(Purchase purchase) {
         int totalAmount = purchase.getDetails().stream()
-                .mapToInt(detail -> detail.getUnitPrice() * detail.getQuantity())
+                .mapToInt(detail -> detail.getFilm().getTicketPrice() * detail.getQuantity())
                 .sum();
 
         purchase.setTotalAmount(totalAmount);

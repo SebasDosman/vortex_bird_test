@@ -10,8 +10,5 @@ public class PurchaseDetailValidator {
     public static final String QUANTITY_NOT_NULL = "The ticket quantity cannot be null";
     public static final String QUANTITY_MIN = "The ticket quantity must be at least 1";
 
-    public static final String UNIT_PRICE_NOT_NULL = "The unit price cannot be null";
-    public static final String UNIT_PRICE_MIN = "The unit price must be at least 1";
-
     public static final String PURCHASE_DETAIL_NOT_FOUND = "The purchase detail with ID: %s was not found";
 }

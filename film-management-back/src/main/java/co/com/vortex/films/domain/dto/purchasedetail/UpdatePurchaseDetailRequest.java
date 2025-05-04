@@ -22,8 +22,4 @@ public class UpdatePurchaseDetailRequest {
     @NotNull(message = PurchaseDetailValidator.QUANTITY_NOT_NULL)
     @Min(value = 1, message = PurchaseDetailValidator.QUANTITY_MIN)
     private Integer quantity;
-
-    @NotNull(message = PurchaseDetailValidator.UNIT_PRICE_NOT_NULL)
-    @Min(value = 1, message = PurchaseDetailValidator.UNIT_PRICE_MIN)
-    private Integer unitPrice;
 }

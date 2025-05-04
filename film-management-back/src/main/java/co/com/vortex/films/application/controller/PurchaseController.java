@@ -23,10 +23,16 @@ import org.springframework.web.bind.annotation.*;
 public class PurchaseController {
     private final IPurchaseService purchaseService;
 
-    @Operation(summary = "Get all purchase", description = "Retrieves a paginated list of all purchase.")
+    @Operation(summary = "Get all purchases", description = "Retrieves a paginated list of all purchases.")
     @GetMapping()
     public ResponseEntity<Slice<PurchaseResponse>> findAll(@PageableDefault Pageable pageable) {
         return new ResponseEntity<>(purchaseService.findAll(pageable), HttpStatus.OK);
+    }
+
+    @Operation(summary = "Get all purchases by user", description = "Retrieves a paginated list of all purchases by user.")
+    @GetMapping("/user/{userId}")
+    public ResponseEntity<Slice<PurchaseResponse>> findByUserId(@PathVariable Long userId, @PageableDefault Pageable pageable) {
+        return new ResponseEntity<>(purchaseService.findByUserId(userId, pageable), HttpStatus.OK);
     }
 
     @Operation(summary = "Get purchase by ID", description = "Retrieves a purchase by their unique ID.")

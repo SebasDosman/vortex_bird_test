@@ -25,7 +25,8 @@ export const FilmForm: React.FC<FilmFormProps> = ({ mode }) => {
         description: "",
         genre: FilmGenre.ACTION,
         classification: FilmClassification.ALL_AUDIENCES,
-        duration: 90
+        duration: 90,
+        ticketPrice: 10000
     });
 
     useEffect(() => {
@@ -39,7 +40,8 @@ export const FilmForm: React.FC<FilmFormProps> = ({ mode }) => {
                         description: filmData.description,
                         genre: filmData.genre as FilmGenre,
                         classification: filmData.classification as FilmClassification,
-                        duration: filmData.duration
+                        duration: filmData.duration,
+                        ticketPrice: filmData.ticketPrice
                     });
                     setImagePreview(filmData.imageUrl);
                 } catch (err: any) {
@@ -184,6 +186,13 @@ export const FilmForm: React.FC<FilmFormProps> = ({ mode }) => {
                                     Duration (minutes) <span className="text-red-500">*</span>
                                 </label>
                                 <input type="number" id="duration" name="duration" value={ film.duration } onChange={ handleInputChange } required min="1" className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500"/>
+                            </div>
+
+                            <div>
+                                <label htmlFor="price" className="block text-sm font-medium text-gray-700 mb-1">
+                                    Ticket price <span className="text-red-500">*</span>
+                                </label>
+                                <input type="number" id="price" name="price" value={ film.ticketPrice } onChange={ handleInputChange } required min="1" className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500"/>
                             </div>
                         </div>
 

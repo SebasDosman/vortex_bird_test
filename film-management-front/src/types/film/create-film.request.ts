@@ -7,4 +7,5 @@ export interface CreateFilmRequest {
     genre: FilmGenre;
     classification: FilmClassification;
     duration: number;
+    ticketPrice: number;
 }

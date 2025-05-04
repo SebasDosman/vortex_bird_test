@@ -12,5 +12,4 @@ public class PurchaseDetailResponse {
     private Long id;
     private FilmResponse film;
     private Integer quantity;
-    private Integer unitPrice;
 }

@@ -25,7 +25,4 @@ public class PurchaseDetail {
 
     @Column(nullable = false)
     private Integer quantity;
-
-    @Column(name = "unit_price", nullable = false)
-    private Integer unitPrice;
 }

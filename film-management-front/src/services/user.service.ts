@@ -19,7 +19,7 @@ export class UserService {
 
         if (!response.ok) {
             const errorData = await response.json();
-            throw new Error(errorData.message);
+            throw new Error(errorData.details ? errorData.details : errorData.message);
         }
 
         return await response.json();
@@ -37,7 +37,7 @@ export class UserService {
 
         if (!response.ok) {
             const errorData = await response.json();
-            throw new Error(errorData.message);
+            throw new Error(errorData.details ? errorData.details : errorData.message);
         }
 
         return await response.json();
@@ -55,7 +55,7 @@ export class UserService {
 
         if (!response.ok) {
             const errorData = await response.json();
-            throw new Error(errorData.message);
+            throw new Error(errorData.details ? errorData.details : errorData.message);
         }
 
         return await response.json();
@@ -73,7 +73,7 @@ export class UserService {
 
         if (!response.ok) {
             const errorData = await response.json();
-            throw new Error(errorData.message);
+            throw new Error(errorData.details ? errorData.details : errorData.message);
         }
 
         return await response.json();
@@ -92,7 +92,7 @@ export class UserService {
 
         if (!response.ok) {
             const errorData = await response.json();
-            throw new Error(errorData.message);
+            throw new Error(errorData.details ? errorData.details : errorData.message);
         }
 
         return await response.json();
@@ -111,7 +111,7 @@ export class UserService {
 
         if (!response.ok) {
             const errorData = await response.json();
-            throw new Error(errorData.message);
+            throw new Error(errorData.details ? errorData.details : errorData.message);
         }
 
         return await response.json();
@@ -120,7 +120,7 @@ export class UserService {
 
     public updateUserStatus = async (id: number): Promise<UserResponse> => {
         const token = authService.getToken();
-        const response = await fetch(`${ this.API_URL }/user/${ id }`, {
+        const response = await fetch(`${ this.API_URL }/user/admin/${ id }`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
@@ -130,7 +130,7 @@ export class UserService {
 
         if (!response.ok) {
             const errorData = await response.json();
-            throw new Error(errorData.message);
+            throw new Error(errorData.details ? errorData.details : errorData.message);
         }
 
         return await response.json();
@@ -138,7 +138,7 @@ export class UserService {
 
     public deleteUser = async (id: number): Promise<void> => {
         const token = authService.getToken();
-        const response = await fetch(`${ this.API_URL }/user/${ id }`, {
+        const response = await fetch(`${ this.API_URL }/user/admin/${ id }`, {
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json",
@@ -148,7 +148,7 @@ export class UserService {
 
         if (!response.ok) {
             const errorData = await response.json();
-            throw new Error(errorData.message);
+            throw new Error(errorData.details ? errorData.details : errorData.message);
         }
     }
 }

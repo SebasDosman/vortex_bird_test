@@ -53,7 +53,7 @@ public class FilmController {
     }
 
     @Operation(summary = "Save film", description = "Saves a new film and uploads its image.")
-    @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    @PostMapping(path = "/admin", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<FilmResponse> save(
             @RequestPart("filmData") @Valid CreateFilmRequest createFilmRequest,
             @RequestPart("image") MultipartFile image,
@@ -63,19 +63,19 @@ public class FilmController {
     }
 
     @Operation(summary = "Update film", description = "Updates an existing films information.")
-    @PutMapping()
+    @PutMapping("/admin")
     public ResponseEntity<FilmResponse> update(@RequestBody @Valid UpdateFilmRequest updateFilmRequest) {
         return new ResponseEntity<>(filmService.update(updateFilmRequest), HttpStatus.OK);
     }
 
     @Operation(summary = "Update film status", description = "Updates the status of a film.")
-    @PutMapping("/{id}")
+    @PutMapping("/admin/{id}")
     public ResponseEntity<FilmResponse> updateStatus(@PathVariable Long id) {
         return new ResponseEntity<>(filmService.updateStatus(id), HttpStatus.OK);
     }
 
     @Operation(summary = "Delete film", description = "Deletes a film by their unique ID.")
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/admin/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id) {
         filmService.delete(id);
 
