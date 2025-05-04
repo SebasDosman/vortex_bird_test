@@ -1,4 +1,3 @@
-export* from "./auth.request";
-export* from "./auth.response";
-export* from "./create-user.request";
-export* from "./user.response";
+export* from "./auth";
+export * from "./film";
+export * from "./user";

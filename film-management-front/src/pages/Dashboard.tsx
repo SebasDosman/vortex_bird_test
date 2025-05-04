@@ -39,26 +39,26 @@ export const Dashboard: React.FC = () => {
 
             <main className="container mx-auto px-4 py-8">
                 <div className="bg-white rounded-lg shadow-md p-6">
-                <h2 className="text-2xl font-semibold text-gray-800 mb-6">
-                    {
-                        userRole === "ADMIN" ? "Admin" : "User"
-                    } Dashboard
-                </h2>
+                    <h2 className="text-2xl font-semibold text-gray-800 mb-6">
+                        {
+                            userRole === "ADMIN" ? "Admin" : "User"
+                        } Dashboard
+                    </h2>
 
-                {
-                    userRole === "ADMIN" ? (
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                            <DashboardCard title="Films Management" description="Create, update or delete movies." action={() => navigate("/admin/movies")}/>
-                            <DashboardCard title="Users Management" description="Create, update or delete users." action={() => navigate("/admin/users")}/>
-                        </div>
-                    ) : (
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                            <DashboardCard title="Movies" description="View the current movies." action={() => navigate("/movies")}/>
-                            <DashboardCard title="My Tickets" description="View your purchased tickets." action={() => navigate("/tickets")}/>
-                            <DashboardCard title="My Profile" description="Update your profile information." action={() => navigate("/profile")}/>
-                        </div>
-                    )
-                }
+                    {
+                        userRole === "ADMIN" ? (
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <DashboardCard title="Films Management" description="Create, update or delete movies." action={() => navigate("/admin/movies")}/>
+                                <DashboardCard title="Users Management" description="Create, update or delete users." action={() => navigate("/admin/users")}/>
+                            </div>
+                        ) : (
+                            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                                <DashboardCard title="Movies" description="View the current movies." action={() => navigate("/movies")}/>
+                                <DashboardCard title="My Tickets" description="View your purchased tickets." action={() => navigate("/tickets")}/>
+                                <DashboardCard title="My Profile" description="Update your profile information." action={() => navigate("/profile")}/>
+                            </div>
+                        )
+                    }
                 </div>
             </main>
         </div>

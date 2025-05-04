@@ -5,10 +5,10 @@ export class AuthService {
     private readonly API_URL = import.meta.env.VITE_API_URL;
 
     public login = async (credentials: AuthenticationRequest): Promise<AuthenticationResponse> => {
-        const response = await fetch(`${this.API_URL}/auth/signIn`, {
+        const response = await fetch(`${ this.API_URL }/auth/signIn`, {
             method: "POST",
             headers: {
-            "Content-Type": "application/json",
+                "Content-Type": "application/json",
             },
             body: JSON.stringify(credentials),
         });
@@ -22,10 +22,10 @@ export class AuthService {
     }
 
     public register = async (userData: CreateUserRequest): Promise<AuthenticationResponse> => {
-        const response = await fetch(`${this.API_URL}/auth/signUp`, {
+        const response = await fetch(`${ this.API_URL }/auth/signUp`, {
             method: "POST",
             headers: {
-            "Content-Type": "application/json",
+                "Content-Type": "application/json",
             },
             body: JSON.stringify(userData),
         });
@@ -70,4 +70,4 @@ export class AuthService {
 
         return user ? user.role : null;
     }
-};
+}

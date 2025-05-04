@@ -1,4 +1,5 @@
-import { UserResponse } from "./";
+import { UserResponse } from "../";
+
 
 export interface AuthenticationResponse {
     accessToken: string;
