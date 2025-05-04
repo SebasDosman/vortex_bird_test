@@ -25,9 +25,16 @@ export const FilmsManagement: React.FC = () => {
         setError(null);
 
         try {
-            const response = showEnabledOnly 
-                ? await filmService.getAllEnabledFilms(currentPage) 
-                : await filmService.getAllFilms(currentPage);
+            let response;
+
+            if (searchTitle.trim()) {
+                response = await filmService.getFilmByTitle(searchTitle.trim(), currentPage);
+            } else {
+                response = showEnabledOnly 
+                    ? await filmService.getAllEnabledFilms(currentPage)
+                    : await filmService.getAllFilms(currentPage);
+            }
+
             setFilms(response.content);
             setTotalPages(response.totalPages);
         } catch (err: any) {
@@ -39,24 +46,24 @@ export const FilmsManagement: React.FC = () => {
 
     useEffect(() => {
         fetchFilms();
-    }, [currentPage, showEnabledOnly]);
+    }, [currentPage, showEnabledOnly, searchTitle]);
 
     const handleSearch = async (e: React.FormEvent) => {
         e.preventDefault();
         setIsLoading(true);
         setError(null);
-        
+    
         try {
             if (searchTitle.trim()) {
-                const film = await filmService.getFilmByTitle(searchTitle);
-                setFilms([film]);
-                setTotalPages(1);
+                const response = await filmService.getFilmByTitle(searchTitle.trim(), currentPage);
+
+                setFilms(response.content);
+                setTotalPages(response.totalPages);
             } else {
                 fetchFilms();
-            }   
+            }
         } catch (err: any) {
             setError(err.message);
-            setFilms([]);
         } finally {
             setIsLoading(false);
         }

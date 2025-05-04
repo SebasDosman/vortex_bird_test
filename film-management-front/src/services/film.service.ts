@@ -61,9 +61,9 @@ export class FilmService {
         return await response.json();
     }
 
-    public getFilmByTitle = async (title: string): Promise<FilmResponse> => {
+    public getFilmByTitle = async (title: string, page = 0, size = 10): Promise<FilmPage> => {
         const token = authService.getToken();
-        const response = await fetch(`${ this.API_URL }/film/title/${ encodeURIComponent(title) }`, {
+        const response = await fetch(`${ this.API_URL }/film/title/${ encodeURIComponent(title) }?page=${ page }&size=${ size }`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
