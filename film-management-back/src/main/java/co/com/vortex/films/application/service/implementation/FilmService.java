@@ -48,10 +48,12 @@ public class FilmService implements IFilmService {
 
     @Override
     @Transactional(readOnly = true)
-    public FilmResponse findByTitle(String title) {
-        if (!filmRepository.existsByTitle(title)) throw new NotFoundException(String.format(FilmValidator.FILM_NOT_FOUND_BY_TITLE, title));
+    public Slice<FilmResponse> findByTitle(String title, Pageable pageable) {
+        Slice<Film> films = filmRepository.findByTitleContainingIgnoreCase(title, pageable);
 
-        return FilmMapper.toFilmResponse(filmRepository.findByTitle(title));
+        if (films.isEmpty()) throw new NotFoundException(String.format(FilmValidator.FILM_NOT_FOUND_BY_TITLE, title));
+
+        return FilmMapper.toFilmResponseSlice(films);
     }
 
     @Override
@@ -69,7 +71,7 @@ public class FilmService implements IFilmService {
 
         Film savedFilm = filmRepository.getReferenceById(updateFilmRequest.getId());
 
-        return FilmMapper.toFilmResponse(filmRepository.save(FilmMapper.toFilm(updateFilmRequest, savedFilm.isEnabled())));
+        return FilmMapper.toFilmResponse(filmRepository.save(FilmMapper.toFilm(updateFilmRequest, savedFilm.getImageUrl(), savedFilm.isEnabled())));
     }
 
     @Override

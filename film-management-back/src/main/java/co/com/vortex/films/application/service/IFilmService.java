@@ -13,7 +13,7 @@ public interface IFilmService {
     Slice<FilmResponse> findAll(Pageable pageable);
     Slice<FilmResponse> findAllEnabled(Pageable pageable);
     FilmResponse findById(Long id);
-    FilmResponse findByTitle(String title);
+    Slice<FilmResponse> findByTitle(String title, Pageable pageable);
     FilmResponse save(CreateFilmRequest createFilmRequest, MultipartFile image, String folder) throws IOException;
     FilmResponse update(UpdateFilmRequest updateFilmRequest);
     FilmResponse updateStatus(Long id);

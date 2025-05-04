@@ -48,8 +48,8 @@ public class FilmController {
 
     @Operation(summary = "Get film by title", description = "Retrieves a film by their title.")
     @GetMapping("/title/{title}")
-    public ResponseEntity<FilmResponse> findByTitle(@PathVariable String title) {
-        return new ResponseEntity<>(filmService.findByTitle(title), HttpStatus.OK);
+    public ResponseEntity<Slice<FilmResponse>> findByTitle(@PathVariable String title, @PageableDefault Pageable pageable) {
+        return new ResponseEntity<>(filmService.findByTitle(title, pageable), HttpStatus.OK);
     }
 
     @Operation(summary = "Save film", description = "Saves a new film and uploads its image.")

@@ -31,11 +31,12 @@ public class FilmMapper {
                 .build();
     }
 
-    public static Film toFilm(UpdateFilmRequest updateFilmRequest, boolean enabled) {
+    public static Film toFilm(UpdateFilmRequest updateFilmRequest, String imageUrl, boolean enabled) {
         return Film.builder()
                 .id(updateFilmRequest.getId())
                 .title(updateFilmRequest.getTitle())
                 .description(updateFilmRequest.getDescription())
+                .imageUrl(imageUrl)
                 .genre(updateFilmRequest.getGenre())
                 .classification(updateFilmRequest.getClassification())
                 .duration(updateFilmRequest.getDuration())

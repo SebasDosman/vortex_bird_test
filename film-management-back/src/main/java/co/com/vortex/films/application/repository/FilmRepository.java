@@ -9,6 +9,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface FilmRepository extends JpaRepository<Film, Long> {
     Slice<Film> findAllByEnabledTrue(Pageable pageable);
-    boolean existsByTitle(String title);
-    Film findByTitle(String title);
+    Slice<Film> findByTitleContainingIgnoreCase(String title, Pageable pageable);
 }

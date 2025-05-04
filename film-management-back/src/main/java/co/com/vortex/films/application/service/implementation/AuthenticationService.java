@@ -36,6 +36,8 @@ public class AuthenticationService implements IAuthenticationService {
         if (!userRepository.existsByEmail(authenticationRequest.getEmail())) throw new UnauthorizedException(AuthenticationValidator.INCORRECT_CREDENTIALS);
 
         User user = userRepository.findByEmail(authenticationRequest.getEmail());
+        if (!user.isEnabled()) throw new UnauthorizedException(AuthenticationValidator.USER_NOT_ENABLED);
+
         String token = createJwtToken(authenticationRequest);
 
         return AuthenticationMapper.toAuthenticationResponse(token, user, tokenService.getType(token), tokenService.getExpirationTime(token));
