@@ -19,3 +19,25 @@ export enum FilmGenre {
     ROMANCE = "ROMANCE",
     SUSPENSE = "SUSPENSE",
 }
+
+export const genreLabels: Record<FilmGenre, string> = {
+    [FilmGenre.ACTION]: "Action",
+    [FilmGenre.ADVENTURE]: "Adventure",
+    [FilmGenre.COMEDY]: "Comedy",
+    [FilmGenre.CRIME]: "Crime",
+    [FilmGenre.DOCUMENTARY]: "Documentary",
+    [FilmGenre.DRAMA]: "Drama",
+    [FilmGenre.FAMILY]: "Family",
+    [FilmGenre.FANTASY]: "Fantasy",
+    [FilmGenre.HISTORY]: "History",
+    [FilmGenre.HORROR]: "Horror",
+    [FilmGenre.MUSICAL]: "Musical",
+    [FilmGenre.MYSTERY]: "Mystery",
+    [FilmGenre.SCIENCE_FICTION]: "Science Fiction",
+    [FilmGenre.SPORT]: "Sport",
+    [FilmGenre.THRILLER]: "Thriller",
+    [FilmGenre.WESTERN]: "Western",
+    [FilmGenre.ANIMATION]: "Animation",
+    [FilmGenre.ROMANCE]: "Romance",
+    [FilmGenre.SUSPENSE]: "Suspense"
+};

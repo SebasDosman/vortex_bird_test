@@ -86,13 +86,6 @@
                 margin-bottom: 4px;
             }
 
-            .film-details {
-                display: flex;
-                justify-content: space-between;
-                font-size: 14px;
-                color: #555;
-            }
-
             .user-info {
                 border-bottom: 1px solid #eee;
                 padding-bottom: 15px;
@@ -126,6 +119,9 @@
             }
 
             .barcode {
+                display: flex;
+                justify-content: center;
+                align-items: center;
                 text-align: center;
                 padding: 15px 0;
                 border-top: 2px dashed #aaa;
@@ -176,15 +172,12 @@
 
                     <div class="purchase-item" th:each="detail : ${details}">
                         <div class="film-title" th:text="${detail.getFilm().getTitle()}"></div>
-                        <div class="film-details">
-                            <p><span>Quantity:</span> <span th:text="${detail.getQuantity()}"></span></p><br>
-                            <p><span>Unit price:</span> <span th:text="${'$' + detail.getFilm().getTicketPrice()}"></span></p>
-                        </div>
                         <div class="movie-info">
-                            <p><span>Description:</span> <span th:text="${detail.getFilm().getDescription()}"></span></p>
                             <p><span>Genre:</span> <span th:text="${detail.getFilm().getGenre()}"></span></p>
                             <p><span>Classification:</span> <span th:text="${detail.getFilm().getClassification()}"></span></p>
                             <p><span>Duration:</span> <span th:text="${detail.getFilm().getDuration()}"></span></p>
+                            <p><span>Tickets quantity:</span> <span th:text="${detail.getQuantity()}"></span></p><br>
+                            <p><span>Ticket price:</span> <span th:text="${'$' + detail.getFilm().getTicketPrice()}"></span></p>
                         </div>
                     </div>
                 </div>
@@ -197,13 +190,12 @@
                 </div>
 
                 <div class="purchase-info">
-                    <p><span>Purchase date:</span> <span th:text="${purchase.getPurchaseDate()}"></span></p>
+                    <p><span>Purchase date:</span> <span th:text="${purchase.getPurchaseDate().toString()}"></span></p>
                     <p><span>Total amount:</span> <span th:text="${'$' + purchase.getTotalAmount()}"></span></p>
                     <p><span>IVA (21%):</span> <span th:text="${'$' + (purchase.getTotalAmount() * 0.21)}"></span></p>
                     <p><span>Total:</span> <span th:text="${'$' + (purchase.getTotalAmount + (purchase.getTotalAmount() * 0.21))}"></span></p>
                     <p><span>Ref.:</span> <span th:text="${referenceCode}"></span></p>
                     <p><span>Payment method:</span> <span th:text="${purchase.getPaymentMethod()}"></span></p>
-                    <p><span>Payment status:</span> <span th:text="${purchase.getPaymentStatus()}"></span></p>
                 </div>
             </div>
 

@@ -1,9 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { FilmResponse } from "../../../types";
+import { classificationLabels, FilmClassification, FilmResponse } from "../../../types";
 import { FilmService } from "../../../services/film.service";
 import { Badge, Button, ConfirmModal, Navbar, Pagination } from "../../../components";
+import { FilmGenre, genreLabels } from '../../../types/film/film-genre.enum';
 
 
 const filmService = new FilmService();
@@ -191,10 +192,10 @@ export const FilmsManagement: React.FC = () => {
                                                         <div className="text-sm font-medium text-gray-900">{ film.title }</div>
                                                     </td>
                                                     <td className="px-6 py-4 whitespace-nowrap">
-                                                        <div className="text-sm text-gray-700">{ film.genre }</div>
+                                                        <div className="text-sm text-gray-700">{ genreLabels[film.genre as FilmGenre] }</div>
                                                     </td>
                                                     <td className="px-6 py-4 whitespace-nowrap">
-                                                        <div className="text-sm text-gray-700">{ film.classification }</div>
+                                                        <div className="text-sm text-gray-700">{ classificationLabels[film.classification as FilmClassification] }</div>
                                                     </td>
                                                     <td className="px-6 py-4 whitespace-nowrap">
                                                         <div className="text-sm text-gray-700">{ film.duration } min</div>
