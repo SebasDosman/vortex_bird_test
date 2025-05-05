@@ -55,9 +55,9 @@ All administrative and purchase-related operations are protected using **RBAC (R
 
 ### Prerequisites
 - Node.js and npm
-- Java 17+
+- Java 21+
 - Maven
-- PostgreSQL or your preferred RDBMS
+- PostgreSQL
 
 ### Run Front-End
 ```bash
@@ -73,4 +73,4 @@ cd film-management-back
 ```
 
 ## Contact
-For any questions regarding the test or the implementation, feel free to reach out to the development team.
+For any questions regarding the test or the implementation, feel free to reach out.
