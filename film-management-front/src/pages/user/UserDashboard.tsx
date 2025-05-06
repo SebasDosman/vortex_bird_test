@@ -1,15 +1,17 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useEffect, useState } from "react";
-import { FilmGenre, FilmResponse, genreLabels, PaymentMethod, PurchaseResponse } from "../../types";
+import { FilmGenre, FilmResponse, genreLabels, PaymentMethod, PurchaseResponse, UpdateUserRequest } from "../../types";
 import { FilmService } from "../../services/film.service";
 import { PurchaseService } from "../../services/purchase.service";
 import { AuthService } from "../../services/auth.service";
 import { formatCurrency, formatDate } from "../../utils/utils";
+import { UserService } from "../../services/user.service";
 
 
 const filmService = new FilmService();
 const purchaseService = new PurchaseService();
 const authService = new AuthService();
+const userService = new UserService();
 
 export const UserDashboard: React.FC = () => {
     const [activeTab, setActiveTab] = useState<"tickets" | "profile">("tickets");
@@ -32,6 +34,8 @@ export const UserDashboard: React.FC = () => {
     const [purchaseSuccess, setPurchaseSuccess] = useState(false);
 
     const [name, setName] = useState("");
+    const [lastName, setLastName] = useState("");
+    const [phone, setPhone] = useState("");
     const [email, setEmail] = useState("");
     const [currentPassword, setCurrentPassword] = useState("");
     const [newPassword, setNewPassword] = useState("");
@@ -81,6 +85,8 @@ export const UserDashboard: React.FC = () => {
         const user = authService.getUser();
         if (user) {
             setName(user.name || "");
+            setLastName(user.lastName || "");
+            setPhone(user.phone || "");
             setEmail(user.email || "");
         }
     };
@@ -147,8 +153,17 @@ export const UserDashboard: React.FC = () => {
                 await new Promise(resolve => setTimeout(resolve, 1000));
 
                 user.name = name;
+                user.lastName = lastName;
+                user.phone = phone;
                 user.email = email;
                 authService.saveUser(user);
+
+                const updateData: UpdateUserRequest = {
+                    ...user,
+                    password: newPassword,
+                    id: Number(user.id),
+                }
+                await userService.updateUser(updateData);
 
                 setProfileUpdateSuccess(true);
             }
@@ -449,6 +464,32 @@ export const UserDashboard: React.FC = () => {
                                                 id="name"
                                                 value={name}
                                                 onChange={(e) => setName(e.target.value)}
+                                                className="px-4 py-2 border border-gray-300 rounded-md w-full focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500"
+                                                required
+                                            />
+                                        </div>
+                                        <div>
+                                            <label htmlFor="lastName" className="block text-sm font-medium text-gray-700 mb-1">
+                                                Last Name
+                                            </label>
+                                            <input
+                                                type="text"
+                                                id="lastName"
+                                                value={lastName}
+                                                onChange={(e) => setLastName(e.target.value)}
+                                                className="px-4 py-2 border border-gray-300 rounded-md w-full focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500"
+                                                required
+                                            />
+                                        </div>
+                                        <div>
+                                            <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">
+                                                Phone
+                                            </label>
+                                            <input
+                                                type="number"
+                                                id="phone"
+                                                value={phone}
+                                                onChange={(e) => setPhone(e.target.value)}
                                                 className="px-4 py-2 border border-gray-300 rounded-md w-full focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500"
                                                 required
                                             />
